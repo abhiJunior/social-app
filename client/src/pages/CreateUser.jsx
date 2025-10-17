@@ -6,6 +6,7 @@ const CreateUser = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const url = "http://localhost:5000"
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -18,7 +19,7 @@ const CreateUser = () => {
         avatar_url: values.avatar_url || "",
       };
 
-      const res = await fetch("http://localhost:5000/api/user", {
+      const res = await fetch(`${url}/api/user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

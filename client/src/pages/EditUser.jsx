@@ -17,6 +17,7 @@ import { X } from "lucide-react";
 const { Option } = Select;
 
 const EditUser = () => {
+  const url = "http://localhost:5000"
   const { id } = useParams();
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -32,14 +33,14 @@ const EditUser = () => {
       setUserLoading(true);
       try {
         // Fetch current user details
-        const resUser = await fetch(`http://localhost:5000/api/user/${id}`);
+        const resUser = await fetch(`${url}/api/user/${id}`);
         if (!resUser.ok) throw new Error("Failed to fetch user data");
         const data = await resUser.json();
         const userData = Array.isArray(data) ? data[0] : data;
 
         // Fetch users followed by this user
         const resFollowing = await fetch(
-          `http://localhost:5000/api/follow/${id}/following`
+          `${url}/api/follow/${id}/following`
         );
         if (!resFollowing.ok)
           throw new Error("Failed to fetch following list");
@@ -49,7 +50,7 @@ const EditUser = () => {
         setFollowingUsers(followingData);
 
         // Fetch all users for dropdown
-        const resAllUsers = await fetch(`http://localhost:5000/api/user`);
+        const resAllUsers = await fetch(`${url}/api/user`);
         if (!resAllUsers.ok) throw new Error("Failed to fetch all users");
         const allUsersData = await resAllUsers.json();
         const filteredUsers = allUsersData.filter(
@@ -79,7 +80,7 @@ const EditUser = () => {
   const handleRemoveFollowing = async (followeeId) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/follow/${id}/unfollow`,
+        `${url}/api/follow/${id}/unfollow`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -104,7 +105,7 @@ const EditUser = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:5000/api/follow/${id}/follow`,
+        `${url}/api/follow/${id}/follow`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -133,7 +134,7 @@ const EditUser = () => {
         avatar_url: values.avatar_url || "",
       };
 
-      const resUser = await fetch(`http://localhost:5000/api/user/${id}`, {
+      const resUser = await fetch(`${url}/api/user/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
