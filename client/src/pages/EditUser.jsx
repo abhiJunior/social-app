@@ -17,7 +17,7 @@ import { X } from "lucide-react";
 const { Option } = Select;
 
 const EditUser = () => {
-  const url = "http://localhost:5000"
+  const url = "https://social-app-6i9w.onrender.com/"
   const { id } = useParams();
   const navigate = useNavigate();
   const [form] = Form.useForm();
