@@ -14,7 +14,9 @@ app.use("/api/follow",followRouter)
 //     res.send("Hello world from server")
 // })
 
-app.listen(5000,async()=>{
+const Port = process.env.Port || 5000
+
+app.listen(Port,async()=>{
     await connectToDB()
-    console.log("Server is running at http://localhost:5000")
+    console.log(`Server is running at http://localhost:${Port}`)
 })
