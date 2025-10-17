@@ -7,7 +7,7 @@ const { Meta } = Card;
 const { Option } = Select;
 
 const Dashboard = () => {
-  const apiBase = "http://localhost:5000";
+  const apiBase = "https://social-app-6i9w.onrender.com/";
   const [users, setUsers] = useState([]);
   const [followingIds, setFollowingIds] = useState([]);
   const [currentUserId, setCurrentUserId] = useState(1);
