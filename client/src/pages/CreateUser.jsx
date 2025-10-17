@@ -6,7 +6,7 @@ const CreateUser = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const url = "http://localhost:5000"
+  const url = "https://social-app-6i9w.onrender.com"
 
   const onFinish = async (values) => {
     setLoading(true);
